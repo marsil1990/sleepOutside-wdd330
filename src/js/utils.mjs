@@ -21,3 +21,33 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get(param);
+  return product;
+}
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false,
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  const html = list.map(templateFn).join("");
+  parentElement.insertAdjacentHTML(position, html);
+}
+
+export function cartCount() {
+  const numberOfitems = (getLocalStorage("so-cart") || []).length;
+  const itemsnumber = document.querySelector(".itemsNumber");
+  if (itemsnumber) {
+    itemsnumber.textContent = numberOfitems || "";
+  }
+}
