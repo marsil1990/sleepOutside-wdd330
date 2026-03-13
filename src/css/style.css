@@ -269,3 +269,15 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* CART-COUNT Number of items */
+.itemsNumber {
+  position: absolute;
+  top: -0.2px;
+  right: -1px;
+
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: black;
+  padding: 1px 5px;
+}
