@@ -9,7 +9,8 @@ export default class ProductDetails {
 
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
-
+    console.log(this.product);
+    this.renderProductDetails();
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addProductToCart.bind(this));
@@ -22,5 +23,25 @@ export default class ProductDetails {
     cartCount();
   }
   renderProductDetails() {
-    const productDetail = document.querySelector(".product-detail");
+    document.querySelector(".product-detail h2").textContent =
+      this.product.Brand.Name;
 
+    document.querySelector(".product-detail h3").textContent =
+      this.product.NameWithoutBrand;
+
+    const image = document.getElementById("productImage");
+    image.src = this.product.Image;
+    image.alt = this.product.Name;
+
+    document.getElementById("productPrice").textContent =
+      `$${this.product.FinalPrice}`;
+
+    document.getElementById("productColor").textContent =
+      this.product.Colors[0].ColorName;
+
+    document.getElementById("productDesc").innerHTML =
+      this.product.DescriptionHtmlSimple;
+
+    document.getElementById("addToCart").dataset.id = this.product.Id;
+  }
+}

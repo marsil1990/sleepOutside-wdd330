@@ -1,5 +1,6 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
+import { cartCount } from "./utils.mjs";
 
 //My MAIN
 

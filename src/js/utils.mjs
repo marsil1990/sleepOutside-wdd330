@@ -24,15 +24,33 @@ export function setClick(selector, callback) {
 }
 
 export function renderListWithTemplate(
-  templateFn,
+  template,
   parentElement,
   list,
   position = "afterbegin",
-
+  clear = false,
 ) {
+  const htmlStrings = list.map(template);
+  // if clear is true we need to clear out the contents of the parent.
   if (clear) {
     parentElement.innerHTML = "";
   }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
 
+// get the product id from the query string
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get(param);
+  return product;
+}
 
+export function cartCount() {
+  const cart = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const itemsNumber = document.querySelector(".itemsNumber");
+
+  if (itemsNumber) {
+    itemsNumber.textContent = cart.length;
+  }
 }
