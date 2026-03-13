@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
 
 function removeItemFromCart(id) {
   let cartItems = getLocalStorage("so-cart");
@@ -6,13 +6,15 @@ function removeItemFromCart(id) {
 
   setLocalStorage("so-cart", cartItems);
 
+  cartCount();
   renderCartContents();
 }
 
 function renderCartContents() {
+  cartCount();
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  document.querySelector(".product-list-cart").innerHTML = htmlItems.join("");
 
   document.querySelectorAll(".remove-item").forEach((button) => {
     button.addEventListener("click", (event) => {
