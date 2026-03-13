@@ -44,6 +44,13 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, html);
 }
 
+/*
+ Updates the cart item count displayed in the page.
+ It reads the cart data from localStorage ("so-cart"),
+ counts the number of items, and shows the value in
+ the element with the class "itemsNumber".
+*/
+
 export function cartCount() {
   const numberOfitems = (getLocalStorage("so-cart") || []).length;
   const itemsnumber = document.querySelector(".itemsNumber");
