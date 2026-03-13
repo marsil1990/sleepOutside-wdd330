@@ -43,3 +43,11 @@ export function renderListWithTemplate(
   const html = list.map(templateFn).join("");
   parentElement.insertAdjacentHTML(position, html);
 }
+
+export function cartCount() {
+  const numberOfitems = (getLocalStorage("so-cart") || []).length;
+  const itemsnumber = document.querySelector(".itemsNumber");
+  if (itemsnumber) {
+    itemsnumber.textContent = numberOfitems || "";
+  }
+}
