@@ -203,6 +203,14 @@ button {
   width: 100%;
 }
 
+.remove-item {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  float: right;
+  font-size: 18px;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
