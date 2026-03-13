@@ -164,9 +164,56 @@ button {
   justify-content: center;
 }
 
+/* CART */
+.product-list-cart {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px;
+  position: relative;
+  width: 90%;
+}
+
+.cart-card__image img {
+  width: 90px;
+}
+
+.card__name {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cart-card__color,
+.cart-card__quantity {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.cart-card__price {
+  margin-left: auto;
+  font-weight: bold;
+}
+
+/* botón eliminar */
+.remove-item {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: red;
+}
+
+/*====================================*/
+
 .product-list-cart {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
