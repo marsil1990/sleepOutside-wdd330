@@ -255,6 +255,7 @@ button {
 
 .product-detail img {
   width: 100%;
+  height: auto;
 }
 
 .remove-item {
@@ -334,4 +335,19 @@ footer {
   background-color: var(--primary-color);
   color: black;
   padding: 1px 5px;
+}
+
+/*
+==================================
+Product listing
+=================================*/
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style: none;
+}
+
+.product-grid a {
+  text-decoration: none;
+  color: var(--primary-color);
 }
