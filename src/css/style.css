@@ -351,3 +351,33 @@ Product listing
   text-decoration: none;
   color: var(--primary-color);
 }
+
+/*
+====================================
+Price Filter
+===================================*/
+
+.price-filter {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.price-filter input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.price-filter button {
+  padding: 5px 10px;
+  border: 1px;
+  margin-left: 2rem;
+  background: #0077cc;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40px;
+}
