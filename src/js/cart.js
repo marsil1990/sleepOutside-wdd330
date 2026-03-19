@@ -1,4 +1,6 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 
 function removeItemFromCart(id) {
   let cartItems = getLocalStorage("so-cart");
