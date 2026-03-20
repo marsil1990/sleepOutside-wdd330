@@ -1,4 +1,11 @@
-import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  cartCount,
+  loadHeaderFooter,
+} from "./utils.mjs";
+
+loadHeaderFooter();
 
 function removeItemFromCart(id) {
   let cartItems = getLocalStorage("so-cart");
@@ -12,7 +19,11 @@ function removeItemFromCart(id) {
 
 function renderCartContents() {
   cartCount();
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage("so-cart") || [];
+  if (cartItems.length === 0) {
+    document.querySelector(".product-list-cart").innerHTML = "";
+    return;
+  }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list-cart").innerHTML = htmlItems.join("");
 

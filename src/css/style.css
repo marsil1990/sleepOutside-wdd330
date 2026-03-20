@@ -255,6 +255,7 @@ button {
 
 .product-detail img {
   width: 100%;
+  height: auto;
 }
 
 .remove-item {
@@ -334,4 +335,49 @@ footer {
   background-color: var(--primary-color);
   color: black;
   padding: 1px 5px;
+}
+
+/*
+==================================
+Product listing
+=================================*/
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style: none;
+}
+
+.product-grid a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/*
+====================================
+Price Filter
+===================================*/
+
+.price-filter {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.price-filter input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.price-filter button {
+  padding: 5px 10px;
+  border: 1px;
+  margin-left: 2rem;
+  background: #0077cc;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40px;
 }
