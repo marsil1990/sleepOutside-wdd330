@@ -65,8 +65,35 @@ export async function loadHeaderFooter() {
   const headerElement = document.querySelector("#main-header");
   const footerElement = document.querySelector("#main-footer");
 
-  renderWithTemplate(headerTemplate, headerElement, cartCount);
+  renderWithTemplate(headerTemplate, headerElement, () => {
+    cartCount();
+    initSearchForm();
+  });
   renderWithTemplate(footerTemplate, footerElement);
+}
+
+// get product by id from search tool
+function initSearchForm() {
+  console.log("initSearchForm running");
+
+  const searchForm = document.querySelector("#search-form");
+  const searchInput = document.querySelector("#search-input");
+
+  console.log(searchForm, searchInput);
+
+  if (!searchForm || !searchInput) return;
+
+  searchForm.addEventListener("submit", (e) => {
+    console.log("submit detected");
+    e.preventDefault();
+
+    const searchTerm = searchInput.value.trim();
+    console.log("search term:", searchTerm);
+
+    if (!searchTerm) return;
+
+    window.location.href = `/product_listing/index.html?search=${encodeURIComponent(searchTerm)}`;
+  });
 }
 
 // get the product id from the query string

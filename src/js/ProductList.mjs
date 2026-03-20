@@ -18,16 +18,16 @@ function productCardTemplate(product, category) {
 //List of Product
 
 export default class ProductList {
-  constructor(category, dataSource, listElement) {
-    this.category = category;
+  constructor(query, dataSource, listElement) {
+    this.query = query;
     this.dataSource = dataSource;
     this.listElement = listElement;
   }
 
   async init() {
-    const productlist = await this.dataSource.getData(this.category);
+    const productlist = await this.dataSource.getData(this.query);
     this.renderList(productlist);
-    document.querySelector(".title").textContent = this.category;
+    document.querySelector("title").textContent = this.query;
   }
 
   async sortListByprice(price) {

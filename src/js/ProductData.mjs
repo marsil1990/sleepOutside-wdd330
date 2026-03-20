@@ -1,5 +1,6 @@
-//Product data
+// Product Data
 const baseURL = import.meta.env.VITE_SERVER_URL;
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -13,8 +14,9 @@ export default class ProductData {
     // this.category = category;
     // this.path = `../json/${this.category}.json`;
   }
-  async getData(category) {
-    const response = await fetch(`${baseURL}products/search/${category}`);
+
+  async getData(query) {
+    const response = await fetch(`${baseURL}products/search/${query}`);
     const data = await convertToJson(response);
     return data.Result;
   }
@@ -22,7 +24,25 @@ export default class ProductData {
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(response);
-
+    
     return data.Result;
+  }
+
+  async searchProducts(searchTerm) {
+    const categories = ["tents", "backpacks", "sleeping-bags", "hammocks"];
+
+    const resultsByCategory = await Promise.all(
+      categories.map((category) => this.getData(category))
+    );
+
+    const allProducts = resultsByCategory.flat();
+    const term = searchTerm.toLowerCase();
+
+    return allProducts.filter((product) => {
+      const brand = product.Brand.Name.toLowerCase();
+      const name = product.NameWithoutBrand.toLowerCase();
+
+      return brand.includes(term) || name.includes(term);
+    });
   }
 }
