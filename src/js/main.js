@@ -4,9 +4,10 @@ import { cartCount, loadHeaderFooter } from "./utils.mjs";
 
 //My MAIN
 
-const productData = new ProductData("tents");
-const listElement = document.querySelector(".product-list");
-const productList = new ProductList("tents", productData, listElement);
+// const productData = new ProductData("tents");
+// const listElement = document.querySelector(".product-list");
+// const productList = new ProductList("tents", productData, listElement);
 loadHeaderFooter();
-productList.init();
+// productList.init();
+
 cartCount();
