@@ -31,8 +31,8 @@ export default class ProductList {
   }
 
   async sortListByprice(price) {
-    console.log(this.category);
-    const productlist = await this.dataSource.getData(this.category);
+    console.log(this.query);
+    const productlist = await this.dataSource.getData(this.query);
     if (!price) {
       this.renderList(productlist);
       return;
@@ -41,7 +41,7 @@ export default class ProductList {
     newList = productlist.filter((product) => product.FinalPrice <= price);
 
     this.renderList(newList);
-    document.querySelector(".title").textContent = this.category;
+    document.querySelector(".title").textContent = this.query;
   }
 
   renderList(list) {
