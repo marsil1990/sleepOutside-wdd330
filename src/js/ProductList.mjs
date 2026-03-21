@@ -31,21 +31,15 @@ export default class ProductList {
   }
 
   async sortListByprice(price) {
+    console.log(this.category);
     const productlist = await this.dataSource.getData(this.category);
     if (!price) {
       this.renderList(productlist);
       return;
     }
     let newList;
-    if (this.category == "tents") {
-      newList = productlist.filter((product) => product.FinalPrice <= price);
-    } else {
-      newList = productlist.filter(
-        (product) => product.Result.FinalPrice <= price,
-      );
-    }
+    newList = productlist.filter((product) => product.FinalPrice <= price);
 
-    console.log(newList);
     this.renderList(newList);
     document.querySelector(".title").textContent = this.category;
   }

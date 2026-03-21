@@ -24,7 +24,7 @@ export default class ProductData {
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(response);
-    
+
     return data.Result;
   }
 
@@ -32,7 +32,7 @@ export default class ProductData {
     const categories = ["tents", "backpacks", "sleeping-bags", "hammocks"];
 
     const resultsByCategory = await Promise.all(
-      categories.map((category) => this.getData(category))
+      categories.map((category) => this.getData(category)),
     );
 
     const allProducts = resultsByCategory.flat();
