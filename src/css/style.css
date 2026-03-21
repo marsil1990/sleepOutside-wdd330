@@ -342,8 +342,10 @@ footer {
 Product listing
 =================================*/
 .product-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
   list-style: none;
 }
 
@@ -380,4 +382,45 @@ Price Filter
   border-radius: 5px;
   cursor: pointer;
   height: 40px;
+}
+
+/*
+==============================
+SEARCH
+=============================*/
+
+#search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  max-width: 500px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  font-size: 1rem;
+  outline: none;
+}
+
+#search-input:focus {
+  border-color: var(--dark-grey);
+}
+
+#search-form button {
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background-color: black;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+#search-form button:hover {
+  background-color: #555;
 }
