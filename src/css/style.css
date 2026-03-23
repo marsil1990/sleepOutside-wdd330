@@ -424,3 +424,50 @@ SEARCH
 #search-form button:hover {
   background-color: #555;
 }
+
+.hide {
+  display: none;
+}
+
+/*
+==========================================================
+CHECKOUT FORM
+==========================================================*/
+.checkout-form {
+  margin: 5px auto;
+  max-width: 600px;
+
+  fieldset {
+    border: 1px solid var(--light-grey);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.65rem;
+    border: 2px solid var(--light-grey);
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+
+  input:invalid {
+    border-left: 5px solid red;
+  }
+
+  input:valid {
+    border-left: 5px solid green;
+  }
+
+  input:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 1px;
+  }
+
+  .checkout-btn {
+    margin-left: 5px;
+    width: 100%;
+  }
+}

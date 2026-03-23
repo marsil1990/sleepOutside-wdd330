@@ -20,12 +20,20 @@ function removeItemFromCart(id) {
 function renderCartContents() {
   cartCount();
   const cartItems = getLocalStorage("so-cart") || [];
+  const cartFooter = document.querySelector(".cart-footer");
+  const cartTotal = document.querySelector(".list-total");
   if (cartItems.length === 0) {
     document.querySelector(".product-list-cart").innerHTML = "";
+    cartFooter.classList.add("hide");
+    cartTotal.textContent = 0;
     return;
   }
+  cartFooter.classList.remove("hide");
+  const total = cartItems.reduce((acum, num) => acum + num.FinalPrice, 0);
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list-cart").innerHTML = htmlItems.join("");
+
+  cartTotal.textContent = total;
 
   document.querySelectorAll(".remove-item").forEach((button) => {
     button.addEventListener("click", (event) => {
