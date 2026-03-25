@@ -18,21 +18,22 @@ function productCardTemplate(product, category) {
 //List of Product
 
 export default class ProductList {
-  constructor(query, dataSource, listElement) {
+  constructor(category, query, dataSource, listElement) {
     this.query = query;
+    this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
   }
 
   async init() {
-    const productlist = await this.dataSource.getData(this.query);
+    const productlist = await this.dataSource.getData(this.category);
     this.renderList(productlist);
-    document.querySelector("title").textContent = this.query;
+    document.querySelector("title").textContent = this.category;
   }
 
   async sortListByprice(price) {
-    console.log(this.query);
-    const productlist = await this.dataSource.getData(this.query);
+    console.log(this.category);
+    const productlist = await this.dataSource.getData(this.category);
     if (!price) {
       this.renderList(productlist);
       return;
@@ -41,10 +42,10 @@ export default class ProductList {
     newList = productlist.filter((product) => product.FinalPrice <= price);
 
     this.renderList(newList);
-    document.querySelector(".title").textContent = this.query;
   }
 
   renderList(list) {
+    document.querySelector(".title").textContent = this.category;
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 }

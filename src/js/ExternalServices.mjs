@@ -1,11 +1,15 @@
 // Product Data
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
-function convertToJson(res) {
+async function convertToJson(res) {
+  const jsonResponse = await res.json();
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw {
+      name: "servicesError",
+      message: jsonResponse,
+    };
   }
 }
 
@@ -41,8 +45,11 @@ export default class ExternalServices {
     return allProducts.filter((product) => {
       const brand = product.Brand.Name.toLowerCase();
       const name = product.NameWithoutBrand.toLowerCase();
+      const category = product.Category.toLowerCase();
 
-      return brand.includes(term) || name.includes(term);
+      return (
+        brand.includes(term) || name.includes(term) || category.includes(term)
+      );
     });
   }
 

@@ -105,10 +105,62 @@ export function getParam(param) {
 }
 
 export function cartCount() {
-  const cart = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const cart = JSON.parse(localStorage.getItem("quantity")) || [];
+  const sum = cart.reduce((acum, q) => Number(q.quantity) + acum, 0);
   const itemsNumber = document.querySelector(".itemsNumber");
 
   if (itemsNumber) {
-    itemsNumber.textContent = cart.length;
+    itemsNumber.textContent = sum;
   }
+}
+
+export function alertMessage(message, scroll = true) {
+  const main = document.querySelector("main");
+  if (!main) return;
+  if (document.querySelector("ul")) ul.remove();
+  const ul = document.createElement("ul");
+  const div = document.createElement("div");
+  div.classList.add("container-errors");
+  if (message && typeof message === "object") {
+    Object.values(message).forEach((value) => {
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+      const button = document.createElement("button");
+      span.innerHTML = value;
+      button.classList.add("remove");
+      button.innerHTML = "X";
+
+      button.addEventListener("click", () => {
+        li.remove();
+        button.remove();
+        if (!ul.children.length) {
+          ul.remove();
+        }
+      });
+      li.append(span);
+      li.append(button);
+      ul.append(li);
+    });
+  } else {
+    const li = document.createElement("li");
+
+    const button = document.createElement("button");
+    li.innerHTML = message;
+    button.classList.add("remove");
+    button.innerHTML = "X";
+
+    button.addEventListener("click", () => {
+      li.remove();
+      button.remove();
+      if (!ul.children.length) {
+        ul.remove();
+      }
+    });
+    li.append(button);
+    ul.append(li);
+  }
+  div.appendChild(ul);
+  main.prepend(div);
+
+  if (scroll) window.scrollTo(0, 0);
 }

@@ -9,8 +9,10 @@ loadHeaderFooter();
 
 function removeItemFromCart(id) {
   let cartItems = getLocalStorage("so-cart");
+  let quantityArray = getLocalStorage("quantity");
+  quantityArray = quantityArray.filter((item) => item.id !== id);
   cartItems = cartItems.filter((item) => item.Id !== id);
-
+  setLocalStorage("quantity", quantityArray);
   setLocalStorage("so-cart", cartItems);
 
   cartCount();
@@ -29,7 +31,16 @@ function renderCartContents() {
     return;
   }
   cartFooter.classList.remove("hide");
-  const total = cartItems.reduce((acum, num) => acum + num.FinalPrice, 0);
+  let total = 0;
+  const quantityArray = getLocalStorage("quantity");
+  cartItems.forEach((e) => {
+    const item = quantityArray.find((element) => element.id === e.Id);
+
+    if (item) {
+      total += Number(item.quantity) * e.FinalPrice;
+    }
+  });
+
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list-cart").innerHTML = htmlItems.join("");
 
@@ -44,8 +55,10 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  const quantityArray = getLocalStorage("quantity") || [];
+  const quantityItem = quantityArray.find((e) => e.id === item.Id);
+  console.log(quantityArray);
   const newItem = `<li class="cart-card divider">
-
     <span class="remove-item" data-id="${item.Id}">X</span>
 
     <a href="#" class="cart-card__image">
@@ -60,7 +73,7 @@ function cartItemTemplate(item) {
     </a>
 
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
+    <p class="cart-card__quantity">qty: ${quantityItem.quantity}</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
 
     </li>`;

@@ -1,4 +1,9 @@
-import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  cartCount,
+  alertMessage,
+} from "./utils.mjs";
 //Product details
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -18,9 +23,28 @@ export default class ProductDetails {
 
   addProductToCart() {
     const cart = getLocalStorage("so-cart") || [];
-    cart.push(this.product);
-    setLocalStorage("so-cart", cart);
+    const existingItem = cart.find((item) => item.Id === this.product.Id);
+
+    const quantity = getLocalStorage("quantity") || [];
+
+    if (existingItem) {
+      const newQuantity = quantity.map((e) => {
+        if (e.id === existingItem.Id) {
+          return { ...e, quantity: e.quantity + 1 };
+        }
+        return e;
+      });
+
+      setLocalStorage("quantity", newQuantity);
+    } else {
+      cart.push(this.product);
+      setLocalStorage("so-cart", cart);
+      quantity.push({ id: this.product.Id, quantity: 1 });
+      setLocalStorage("quantity", quantity);
+    }
+
     cartCount();
+    alertMessage("The product has been added successfully");
   }
   renderProductDetails() {
     document.querySelector(".product-detail h2").textContent =

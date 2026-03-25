@@ -1,5 +1,5 @@
 import ExternalServices from "./ExternalServices.mjs";
-import { getLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage } from "./utils.mjs";
 
 const services = new ExternalServices();
 // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
@@ -34,16 +34,26 @@ export default class CheckoutProcess {
 
   calculateItemSubTotal() {
     // calculate and display the total dollar amount of the items in the cart, and the number of items.
-    this.itemTotal = this.list.reduce(
-      (acum, num) => Number(num.FinalPrice) + acum,
-      0,
-    );
+    const quantityArray = getLocalStorage("quantity");
+    this.list.forEach((e) => {
+      const item = quantityArray.find((element) => element.id === e.Id);
+
+      if (item) {
+        this.itemTotal += Number(item.quantity) * e.FinalPrice;
+      }
+    });
+    console.log(this.itemTotal);
+
     return this.itemTotal;
   }
 
   calculateOrderTotal() {
     // calculate the tax and shipping amounts. Add those to the cart total to figure out the order total
-    const numberOfitems = this.list.length;
+    const items = getLocalStorage("quantity");
+    const numberOfitems = items.reduce(
+      (acum, n) => Number(n.quantity) + acum,
+      0,
+    );
     this.tax = this.itemTotal * 0.06;
     if (numberOfitems > 0) {
       this.shipping = 10 + (numberOfitems - 1) * 2;
@@ -87,11 +97,6 @@ export default class CheckoutProcess {
 
     order.items = packageItems(this.list);
 
-    try {
-      const result = await services.checkout(order);
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
+    return await services.checkout(order);
   }
 }
