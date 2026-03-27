@@ -1,85 +1,81 @@
 <!doctype html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Checkout</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/checkout.js"></script>
+  </head>
 
-  <title>Sleep Outside | Checkout</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <script type="module" src="../js/checkout.js"></script>
-</head>
+  <body>
+    <header class="divider" id="main-header"></header>
+    <main class="divider">
+      <section class="products">
+        <h2>Review & Place your Order</h2>
+        <form id="checkout-form" class="checkout-form" name="checkout-form">
+          <fieldset>
+            <legend>Customer Information</legend>
 
-<body>
-  <header class="divider" id="main-header"></header>
-  <main class="divider">
-    <section class="products">
-      <h2>Review & Place your Order</h2>
-      <form id="checkout-form" class="checkout-form" name="checkout-form">
-        <fieldset>
-          <legend>Customer Information</legend>
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" required />
 
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" name="fname" required>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" required />
 
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="lname" required>
+            <label for="street">Street Address</label>
+            <input type="text" id="street" name="street" required />
 
-          <label for="street">Street Address</label>
-          <input type="text" id="street" name="street" required>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required />
 
-          <label for="city">City</label>
-          <input type="text" id="city" name="city" required>
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" required />
 
-          <label for="state">State</label>
-          <input type="text" id="state" name="state" required>
+            <label for="zip">Zip Code</label>
+            <input type="text" id="zip" name="zip" required />
+          </fieldset>
 
-          <label for="zip">Zip Code</label>
-          <input type="text" id="zip" name="zip" required>
-        </fieldset>
+          <fieldset>
+            <legend>Payment Information</legend>
 
-        <fieldset>
-          <legend>Payment Information</legend>
+            <label for="cardNumber">Credit Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" required />
 
-          <label for="cardNumber">Credit Card Number</label>
-          <input type="text" id="cardNumber" name="cardNumber" required>
+            <label for="expiration">Expiration Date</label>
+            <input type="text" id="expiration" name="expiration" required />
 
-          <label for="expiration">Expiration Date</label>
-          <input type="text" id="expiration" name="expiration" required>
+            <label for="code">Security Code</label>
+            <input type="text" id="code" name="code" required />
+          </fieldset>
 
-          <label for="code">Security Code</label>
-          <input type="text" id="code" name="code" required>
-        </fieldset>
+          <fieldset class="checkout-summary">
+            <legend>Order Summary</legend>
 
-        <fieldset class="checkout-summary">
-          <legend>Order Summary</legend>
+            <div class="order__summary">
+              <div>Items</div>
+              <div id="num-items"></div>
+              <div>Subtotal</div>
+              <div id="cartTotal"></div>
+              <div>Tax</div>
+              <div id="tax"></div>
+              <div>Shipping</div>
+              <div id="shipping"></div>
+              <div>Total</div>
+              <div id="orderTotal"></div>
+            </div>
+          </fieldset>
 
-          <div class="order__summary">
-            <div>Items</div>
-            <div id="num-items"></div>
-            <div>Subtotal</div>
-            <div id="cartTotal"></div>
-            <div>Tax</div>
-            <div id="tax"></div>
-            <div>Shipping</div>
-            <div id="shipping"></div>
-            <div>Total</div>
-            <div id="orderTotal"></div>
-          </div>
-        </fieldset>
+          <button type="submit" id="checkoutSubmit" class="checkout-btn">
+            Checkout
+          </button>
+        </form>
+      </section>
+    </main>
 
-        <button type="submit" id="checkoutSubmit" class="checkout-btn">Checkout</button>
-      </form>
-
-      </form>
-
-
-    </section>
-  </main>
-
-  <footer id="main-footer"></footer>
-</body>
-
+    <footer id="main-footer"></footer>
+  </body>
 </html>
